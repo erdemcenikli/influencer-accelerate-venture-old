@@ -92,8 +92,8 @@ const HeroSection = () => {
         <div className="relative h-[500px] md:h-[600px] animate-fade-in">
           <div className="absolute inset-0 rounded-2xl overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" 
-              alt="Influencers creating content together" 
+              src="/public/lovable-uploads/e90dba93-3d65-446f-8a2c-f024c43fe3e7.png" 
+              alt="Group of glamorous influencers in front of city skyline at night" 
               className="w-full h-full object-cover rounded-2xl transition-all duration-700 ease-in-out hover:scale-105"
               loading="lazy"
               onLoad={(e) => {
