@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ExternalLink } from 'lucide-react';
@@ -92,7 +91,7 @@ const HeroSection = () => {
         <div className="relative h-[500px] md:h-[600px] animate-fade-in">
           <div className="absolute inset-0 rounded-2xl overflow-hidden">
             <img 
-              src="/public/lovable-uploads/e90dba93-3d65-446f-8a2c-f024c43fe3e7.png" 
+              src="/lovable-uploads/e90dba93-3d65-446f-8a2c-f024c43fe3e7.png" 
               alt="Group of glamorous influencers in front of city skyline at night" 
               className="w-full h-full object-cover rounded-2xl transition-all duration-700 ease-in-out hover:scale-105"
               loading="lazy"

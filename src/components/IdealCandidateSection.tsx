@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Check } from 'lucide-react';
 
@@ -53,7 +52,7 @@ const IdealCandidateSection = () => {
           >
             <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-elevation">
               <img 
-                src="/public/lovable-uploads/42792f16-1e73-4163-bcd6-1bcc8f38f74f.png" 
+                src="/lovable-uploads/42792f16-1e73-4163-bcd6-1bcc8f38f74f.png" 
                 alt="Group of influencers taking photos with city skyline in background" 
                 className="w-full h-full object-cover"
                 loading="lazy"
