@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -12,7 +11,7 @@ interface TimelineItemProps {
 }
 
 const TimelineItem = ({ title, duration, description, icon, position, delay }: TimelineItemProps) => {
-  const itemRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef(null);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -71,7 +70,7 @@ const TimelineItem = ({ title, duration, description, icon, position, delay }: T
 };
 
 const ProgramSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef(null);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -103,7 +102,7 @@ const ProgramSection = () => {
         >
           <div className="chip mb-4">The Process</div>
           <h2 className="text-3xl md:text-4xl font-bold">
-            How It Works: Your 6-Month Journey to Influencer Stardom
+            How It Works: Your 6-Month Journey to ViralRise Stardom
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             Our structured program is designed to transform your influence into a scalable business through three distinct phases.

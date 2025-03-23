@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ExternalLink, DollarSign, Users, Lightbulb, Target, Trophy } from 'lucide-react';
@@ -11,7 +10,7 @@ interface BenefitCardProps {
 }
 
 const BenefitCard = ({ title, description, icon, delay }: BenefitCardProps) => {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef(null);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,7 +52,7 @@ const BenefitCard = ({ title, description, icon, delay }: BenefitCardProps) => {
 };
 
 const BenefitsSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef(null);
   const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSfWHt-hs-SgoZ_16LiglpnTF6xBSswU2QfaK664_w08EZOwww/viewform?usp=sharing";
   
   useEffect(() => {
@@ -90,7 +89,7 @@ const BenefitsSection = () => {
         >
           <div className="chip mb-4">Benefits</div>
           <h2 className="text-3xl md:text-4xl font-bold">
-            Why Join Our Accelerator?
+            Why Join ViralRise Influencer Accelerator?
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             We provide everything you need to transform your influence into a sustainable, scalable business.

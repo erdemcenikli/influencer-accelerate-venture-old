@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -35,7 +34,7 @@ const Navbar = () => {
     >
       <div className="container flex items-center justify-between">
         <a href="#" className="flex items-center space-x-2">
-          <span className="font-bold text-lg tracking-tight">Accelerate</span>
+          <span className="font-bold text-lg tracking-tight">ViralRise</span>
         </a>
         
         <nav className="hidden md:flex items-center space-x-8">

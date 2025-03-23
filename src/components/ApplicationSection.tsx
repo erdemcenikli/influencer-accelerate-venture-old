@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
@@ -15,7 +14,7 @@ const ApplicationSection = () => {
         <div className="text-center mb-12">
           <div className="chip mb-4">Apply Now</div>
           <h2 className="text-3xl md:text-4xl font-bold">
-            Start Your Influencer Journey
+            Start Your ViralRise Journey
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             Ready to take your influence to the next level? Click the button below to apply through our application form.

@@ -1,4 +1,3 @@
-
 import { ArrowUp } from 'lucide-react';
 
 const FooterSection = () => {
@@ -15,7 +14,7 @@ const FooterSection = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-8 md:mb-0">
             <a href="#" className="flex items-center space-x-2">
-              <span className="font-bold text-lg tracking-tight">Accelerate</span>
+              <span className="font-bold text-lg tracking-tight">ViralRise</span>
             </a>
             <p className="mt-2 text-sm text-muted-foreground">
               Transforming influencers into entrepreneurs.
@@ -95,7 +94,7 @@ const FooterSection = () => {
         
         <div className="mt-12 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-center">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Accelerate. All rights reserved.
+            &copy; {new Date().getFullYear()} ViralRise. All rights reserved.
           </p>
           
           <div className="flex space-x-6 mt-4 md:mt-0">

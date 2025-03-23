@@ -44,9 +44,9 @@ const HeroSection = () => {
           className="flex flex-col space-y-6 transition-all duration-1000 opacity-0 translate-y-6"
         >
           <div>
-            <div className="chip mb-4">6-month influencer accelerator</div>
+            <div className="chip mb-4">6-month ViralRise Influencer Accelerator</div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-              Launch Your Influencer Empire in Just 6 Months
+              Launch Your Influencer Empire in Just 6 Months with ViralRise
             </h1>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground">
               Get $80k, premium products, and expert guidance to scale your personal brand—all for a 10% stake in your success.

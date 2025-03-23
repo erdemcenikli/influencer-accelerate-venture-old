@@ -76,7 +76,7 @@ const IdealCandidateSection = () => {
           >
             <div className="chip mb-4">Who We're Looking For</div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Are You the Next Big Influencer?
+              Are You the Next ViralRise Star?
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
               We're seeking ambitious creators who are ready to transform their influence into a scalable business. Our ideal candidates have:
