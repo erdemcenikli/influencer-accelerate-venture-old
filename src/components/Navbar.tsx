@@ -2,10 +2,11 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ExternalLink } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSfWHt-hs-SgoZ_16LiglpnTF6xBSswU2QfaK664_w08EZOwww/viewform?usp=sharing";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +19,10 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
+
+  const handleApplyClick = () => {
+    window.open(googleFormLink, '_blank');
+  };
 
   return (
     <header 
@@ -52,20 +57,20 @@ const Navbar = () => {
           variant="default" 
           size="sm" 
           className="button-hover-effect hidden md:flex"
-          onClick={() => document.getElementById('apply')?.scrollIntoView({behavior: 'smooth'})}
+          onClick={handleApplyClick}
         >
           Apply Now
-          <ChevronRight className="ml-1 h-4 w-4" />
+          <ExternalLink className="ml-1 h-4 w-4" />
         </Button>
         
         <Button 
           variant="outline" 
           size="sm" 
           className="md:hidden" 
-          onClick={() => document.getElementById('apply')?.scrollIntoView({behavior: 'smooth'})}
+          onClick={handleApplyClick}
         >
           Apply
-          <ChevronRight className="ml-1 h-3 w-3" />
+          <ExternalLink className="ml-1 h-3 w-3" />
         </Button>
       </div>
     </header>

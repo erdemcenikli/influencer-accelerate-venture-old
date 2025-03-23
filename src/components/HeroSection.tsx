@@ -1,10 +1,11 @@
 
 import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSfWHt-hs-SgoZ_16LiglpnTF6xBSswU2QfaK664_w08EZOwww/viewform?usp=sharing";
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,6 +27,10 @@ const HeroSection = () => {
       if (heroRef.current) observer.unobserve(heroRef.current);
     };
   }, []);
+
+  const handleApplyClick = () => {
+    window.open(googleFormLink, '_blank');
+  };
 
   return (
     <section className="relative min-h-screen flex items-center pt-20">
@@ -53,10 +58,10 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               className="button-hover-effect text-base"
-              onClick={() => document.getElementById('apply')?.scrollIntoView({behavior: 'smooth'})}
+              onClick={handleApplyClick}
             >
               Apply Now
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
             <Button 
               variant="outline" 
