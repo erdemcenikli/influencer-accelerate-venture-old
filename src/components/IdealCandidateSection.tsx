@@ -53,8 +53,8 @@ const IdealCandidateSection = () => {
           >
             <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-elevation">
               <img 
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" 
-                alt="Influencer at work" 
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
+                alt="Influencer creating content" 
                 className="w-full h-full object-cover"
                 loading="lazy"
                 onLoad={(e) => {
