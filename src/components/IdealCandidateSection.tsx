@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import { Check } from 'lucide-react';
 
 const IdealCandidateSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef(null);
+  const imageRef = useRef(null);
   
   useEffect(() => {
     const sectionObserver = new IntersectionObserver(

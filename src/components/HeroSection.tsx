@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
 const HeroSection = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef(null);
   const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSfWHt-hs-SgoZ_16LiglpnTF6xBSswU2QfaK664_w08EZOwww/viewform?usp=sharing";
   
   useEffect(() => {
