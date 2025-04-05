@@ -44,12 +44,12 @@ const HeroSection = () => {
           className="flex flex-col space-y-6 transition-all duration-1000 opacity-0 translate-y-6"
         >
           <div>
-            <div className="chip mb-4">6-month ViralRise Influencer Accelerator</div>
+            <div className="chip mb-4">6-month ViralRise Influencer Accelerator in Bali</div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-              Launch Your Influencer Empire in Just 6 Months with ViralRise
+              Launch Your Influencer Empire in Beautiful Bali with ViralRise
             </h1>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground">
-              Get $80k, premium products, and expert guidance to scale your personal brand—all for a 10% stake in your success.
+              Get $80k, premium products, and expert guidance to scale your personal brand in paradise—all for a 10% stake in your success.
             </p>
           </div>
           
@@ -85,6 +85,10 @@ const HeroSection = () => {
               <span className="font-semibold text-foreground">10%</span>
               <span>Equity</span>
             </div>
+            <div className="flex flex-col items-center px-4 py-2 rounded-lg bg-white/50 backdrop-blur-sm border border-border">
+              <span className="font-semibold text-foreground">Bali</span>
+              <span>Location</span>
+            </div>
           </div>
         </div>
         
@@ -112,8 +116,8 @@ const HeroSection = () => {
                 </svg>
               </div>
               <div>
-                <h4 className="font-medium mb-1">Go from creator to entrepreneur</h4>
-                <p className="text-sm text-muted-foreground">Our structured program transforms your content into a scalable business</p>
+                <h4 className="font-medium mb-1">Create content in paradise</h4>
+                <p className="text-sm text-muted-foreground">Transform your influence in beautiful Bali, the perfect backdrop for your content</p>
               </div>
             </div>
           </div>

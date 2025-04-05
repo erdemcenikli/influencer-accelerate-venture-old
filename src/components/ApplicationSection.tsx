@@ -14,10 +14,10 @@ const ApplicationSection = () => {
         <div className="text-center mb-12">
           <div className="chip mb-4">Apply Now</div>
           <h2 className="text-3xl md:text-4xl font-bold">
-            Start Your ViralRise Journey
+            Start Your ViralRise Journey in Bali
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ready to take your influence to the next level? Click the button below to apply through our application form.
+            Ready to accelerate your influence in the paradise of Bali? Click the button below to apply through our application form.
           </p>
         </div>
         
