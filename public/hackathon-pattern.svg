@@ -1,0 +1,37 @@
+<svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.5">
+    <!-- Grid pattern -->
+    <path d="M0 0h1440v1024H0z" fill="none" />
+    
+    <!-- Abstract shapes -->
+    <circle cx="200" cy="200" r="80" fill="#6D28D9" opacity="0.1" />
+    <circle cx="600" cy="300" r="120" fill="#4F46E5" opacity="0.1" />
+    <circle cx="1000" cy="200" r="100" fill="#6D28D9" opacity="0.1" />
+    <circle cx="1300" cy="500" r="150" fill="#4F46E5" opacity="0.1" />
+    <circle cx="300" cy="700" r="120" fill="#6D28D9" opacity="0.1" />
+    <circle cx="800" cy="800" r="100" fill="#4F46E5" opacity="0.1" />
+    
+    <!-- Dots pattern -->
+    <g opacity="0.2">
+      <circle cx="100" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="200" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="300" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="400" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="500" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="600" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="700" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="800" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="900" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="1000" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="1100" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="1200" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="1300" cy="100" r="2" fill="#6D28D9" />
+      <circle cx="1400" cy="100" r="2" fill="#6D28D9" />
+      
+      <!-- Repeat for other rows -->
+      <circle cx="100" cy="200" r="2" fill="#6D28D9" />
+      <circle cx="200" cy="200" r="2" fill="#6D28D9" />
+      <!-- ... and so on for all grid points -->
+    </g>
+  </g>
+</svg>
