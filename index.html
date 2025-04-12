@@ -12,6 +12,38 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SPA routing fix for production -->
+    <script>
+      // Redirect script for SPA routing - will only run in production
+      (function() {
+        // Don't run on localhost
+        if (window.location.hostname === 'localhost' || 
+            window.location.hostname === '127.0.0.1') {
+          return;
+        }
+        
+        // Check if we need to redirect
+        var segmentCount = 0;
+        var l = window.location;
+        
+        // Only handle 404 cases
+        if (l.search[1] === '/' || 
+            l.pathname.slice(-3) === '404' || 
+            l.hash === '#404') {
+          // Get the original URL that caused the 404
+          var redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          
+          // If we have a stored redirect, go there now
+          if (redirect && redirect !== l.href) {
+            history.replaceState(null, null, redirect);
+          }
+        } else {
+          // Store the current URL in case we get a 404 response
+          sessionStorage.redirect = l.href;
+        }
+      })();
+    </script>
     <!-- Base URL for client-side routing -->
     <base href="/" />
     <title>ViralRise Influencer Accelerator</title>

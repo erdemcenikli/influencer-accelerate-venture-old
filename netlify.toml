@@ -2,10 +2,12 @@
   command = "npm run build"
   publish = "dist"
 
+# This ensures that all routes are handled by the SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true
 
 [[headers]]
   for = "/*"

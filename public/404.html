@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ViralRise | Redirecting...</title>
+  <script>
+    // Single Page App routing fix
+    // Store the URL the user was trying to access
+    sessionStorage.redirect = location.href;
+    
+    // Redirect to the homepage
+    window.location.href = "/";
+  </script>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <p>If you are not redirected automatically, <a href="/">click here</a>.</p>
+</body>
+</html>
