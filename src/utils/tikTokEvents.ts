@@ -58,6 +58,102 @@ export const trackViewContent = (contentId: string, contentName: string, value?:
   console.log('TikTok ViewContent event sent:', contentName);
 };
 
+// Track search
+export const trackSearch = (searchString: string, contentId: string, contentName: string, value?: number) => {
+  if (!window.ttq) return;
+  
+  window.ttq.track('Search', {
+    contents: [
+      {
+        content_id: contentId,
+        content_type: 'product',
+        content_name: contentName
+      }
+    ],
+    value: value || 0,
+    currency: 'USD',
+    search_string: searchString
+  });
+  
+  console.log('TikTok Search event sent:', searchString);
+};
+
+// Track contact event
+export const trackContact = (contactType: string, contentId: string, contentName: string, value?: number) => {
+  if (!window.ttq) return;
+  
+  window.ttq.track('Contact', {
+    contents: [
+      {
+        content_id: contentId,
+        content_type: 'contact',
+        content_name: contentName
+      }
+    ],
+    value: value || 0,
+    currency: 'USD'
+  });
+  
+  console.log('TikTok Contact event sent:', contactType);
+};
+
+// Track button click
+export const trackClickButton = (buttonId: string, buttonName: string, value?: number) => {
+  if (!window.ttq) return;
+  
+  window.ttq.track('ClickButton', {
+    contents: [
+      {
+        content_id: buttonId,
+        content_type: 'button',
+        content_name: buttonName
+      }
+    ],
+    value: value || 0,
+    currency: 'USD'
+  });
+  
+  console.log('TikTok ClickButton event sent:', buttonName);
+};
+
+// Track add to wishlist
+export const trackAddToWishlist = (contentId: string, contentName: string, value?: number) => {
+  if (!window.ttq) return;
+  
+  window.ttq.track('AddToWishlist', {
+    contents: [
+      {
+        content_id: contentId,
+        content_type: 'product',
+        content_name: contentName
+      }
+    ],
+    value: value || 0,
+    currency: 'USD'
+  });
+  
+  console.log('TikTok AddToWishlist event sent:', contentName);
+};
+
+// Track waitlist join (CompleteRegistration)
+export const trackJoinWaitlist = (source: string, value?: number) => {
+  if (!window.ttq) return;
+  
+  window.ttq.track('CompleteRegistration', {
+    contents: [
+      {
+        content_id: 'waitlist-join',
+        content_type: 'registration',
+        content_name: `Waitlist Join - ${source}`
+      }
+    ],
+    value: value || 10,
+    currency: 'USD'
+  });
+  
+  console.log('TikTok CompleteRegistration event sent for waitlist');
+};
+
 // Track form submission
 export const trackSubmitForm = (formId: string, formName: string, value?: number) => {
   if (!window.ttq) return;
@@ -75,59 +171,6 @@ export const trackSubmitForm = (formId: string, formName: string, value?: number
   });
   
   console.log('TikTok SubmitForm event sent:', formName);
-};
-
-// Track button click
-export const trackClickButton = (buttonId: string, buttonName: string) => {
-  if (!window.ttq) return;
-  
-  window.ttq.track('ClickButton', {
-    contents: [
-      {
-        content_id: buttonId,
-        content_type: 'button',
-        content_name: buttonName
-      }
-    ]
-  });
-  
-  console.log('TikTok ClickButton event sent:', buttonName);
-};
-
-// Track waitlist join (CompleteRegistration)
-export const trackJoinWaitlist = (source: string) => {
-  if (!window.ttq) return;
-  
-  window.ttq.track('CompleteRegistration', {
-    contents: [
-      {
-        content_id: 'waitlist-join',
-        content_type: 'registration',
-        content_name: `Waitlist Join - ${source}`
-      }
-    ],
-    value: 10,
-    currency: 'USD'
-  });
-  
-  console.log('TikTok CompleteRegistration event sent for waitlist');
-};
-
-// Track contact event
-export const trackContact = (contactType: string) => {
-  if (!window.ttq) return;
-  
-  window.ttq.track('Contact', {
-    contents: [
-      {
-        content_id: `contact-${contactType}`,
-        content_type: 'contact',
-        content_name: `Contact - ${contactType}`
-      }
-    ]
-  });
-  
-  console.log('TikTok Contact event sent:', contactType);
 };
 
 // Ensure TypeScript recognizes the global ttq object
