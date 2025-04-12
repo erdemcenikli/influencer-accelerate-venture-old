@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { ChevronRight, ExternalLink, Menu, X } from 'lucide-react';
+import { ChevronRight, ExternalLink } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSfWHt-hs-SgoZ_16LiglpnTF6xBSswU2QfaK664_w08EZOwww/viewform?usp=sharing";
@@ -23,17 +22,8 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
-  // Close mobile menu when changing routes
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location.pathname]);
-
   const handleApplyClick = () => {
     window.open(googleFormLink, '_blank');
-  };
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
   };
 
   return (
@@ -50,7 +40,6 @@ const Navbar = () => {
           <span className="font-bold text-lg tracking-tight">ViralRise</span>
         </Link>
         
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {isHomePage ? (
             <>
@@ -94,140 +83,37 @@ const Navbar = () => {
         </nav>
         
         <div className="flex items-center space-x-4">
-          {/* Desktop buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            {location.pathname !== "/hackathon" && (
-              <Link 
-                to="/hackathon" 
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-md shadow-sm hover:shadow-md transition-all duration-300"
-              >
-                Hackathon Competition
-                <ChevronRight className="ml-1 h-4 w-4" />
-              </Link>
-            )}
-            
-            <Button 
-              variant="default" 
-              size="sm" 
-              className="button-hover-effect"
-              onClick={handleApplyClick}
+          {location.pathname !== "/hackathon" && (
+            <Link 
+              to="/hackathon" 
+              className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-md shadow-sm hover:shadow-md transition-all duration-300"
             >
-              Apply Now
-              <ExternalLink className="ml-1 h-4 w-4" />
-            </Button>
-          </div>
+              Hackathon Competition
+              <ChevronRight className="ml-1 h-4 w-4" />
+            </Link>
+          )}
           
-          {/* Mobile buttons */}
-          <div className="flex md:hidden items-center space-x-3">
-            {location.pathname !== "/hackathon" && (
-              <Link 
-                to="/hackathon" 
-                className="inline-flex items-center px-3 py-1.5 text-xs font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-md shadow-sm"
-              >
-                Hackathon
-              </Link>
-            )}
-            
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="text-xs px-3 py-1.5" 
-              onClick={handleApplyClick}
-            >
-              Apply
-              <ExternalLink className="ml-1 h-3 w-3" />
-            </Button>
-            
-            <button
-              onClick={toggleMobileMenu}
-              className="p-1.5 rounded-md text-foreground/80 hover:bg-foreground/10"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
+          <Button 
+            variant="default" 
+            size="sm" 
+            className="button-hover-effect hidden md:flex"
+            onClick={handleApplyClick}
+          >
+            Apply Now
+            <ExternalLink className="ml-1 h-4 w-4" />
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="md:hidden" 
+            onClick={handleApplyClick}
+          >
+            Apply
+            <ExternalLink className="ml-1 h-3 w-3" />
+          </Button>
         </div>
       </div>
-      
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md shadow-md">
-          <div className="container py-4 space-y-3">
-            {isHomePage ? (
-              <>
-                <a 
-                  href="#program" 
-                  className="block py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Program
-                </a>
-                <a 
-                  href="#benefits" 
-                  className="block py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Benefits
-                </a>
-                <a 
-                  href="#who" 
-                  className="block py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Who We Want
-                </a>
-                <a 
-                  href="#apply" 
-                  className="block py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Apply
-                </a>
-              </>
-            ) : (
-              <>
-                <Link 
-                  to="/#program" 
-                  className="block py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Program
-                </Link>
-                <Link 
-                  to="/#benefits" 
-                  className="block py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Benefits
-                </Link>
-                <Link 
-                  to="/#who" 
-                  className="block py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Who We Want
-                </Link>
-                <Link 
-                  to="/#apply" 
-                  className="block py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Apply
-                </Link>
-              </>
-            )}
-            {location.pathname !== "/hackathon" && (
-              <Link 
-                to="/hackathon" 
-                className="block py-2 text-sm font-medium text-purple-600 hover:text-purple-700"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Hackathon
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
     </header>
   );
 };
