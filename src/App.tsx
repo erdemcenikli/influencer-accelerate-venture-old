@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Hackathon from "./pages/Hackathon";
 import { WaitlistProvider } from "./contexts/WaitlistContext";
+import { TikTokTracker } from "./components/TikTokTracker";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <TikTokTracker />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/hackathon" element={<Hackathon />} />
