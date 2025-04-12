@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -7,6 +6,7 @@ import BenefitsSection from '@/components/BenefitsSection';
 import IdealCandidateSection from '@/components/IdealCandidateSection';
 import ApplicationSection from '@/components/ApplicationSection';
 import FooterSection from '@/components/FooterSection';
+import { trackViewContent } from "@/utils/tikTokEvents";
 
 const Index = () => {
   useEffect(() => {
@@ -27,6 +27,11 @@ const Index = () => {
     handleScroll(); // Initial check
     
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Track page view when component mounts
+    trackViewContent('home-page', 'ViralRise Influencer Accelerator', 50);
   }, []);
 
   return (

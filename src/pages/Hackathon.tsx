@@ -5,13 +5,17 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Clock, Users, Trophy, Lightbulb, Calendar, MapPin, CheckCircle2 } from 'lucide-react';
 import WaitlistPopup from '@/components/WaitlistPopup';
 import { useWaitlist } from '@/contexts/WaitlistContext';
+import { trackViewContent, trackClickButton, trackJoinWaitlist } from "@/utils/tikTokEvents";
 
 const Hackathon = () => {
   const { waitlistCount } = useWaitlist();
   const [showPopup, setShowPopup] = useState(false);
 
-  // Show popup after 5 seconds
   useEffect(() => {
+    // Track page view when component mounts
+    trackViewContent('hackathon-page', 'Weekend Hackathon for University Students', 20);
+    
+    // Show popup after 5 seconds
     const popupTimer = setTimeout(() => {
       setShowPopup(true);
     }, 5000);
@@ -41,7 +45,12 @@ const Hackathon = () => {
   }, []);
 
   const handleJoinWaitlist = () => {
+    trackClickButton('join-waitlist-btn', 'Join Waitlist Button - Hackathon');
     window.open("https://forms.gle/woi7ipjUf64fkqoU6", "_blank");
+  };
+
+  const handlePopupSubmit = () => {
+    trackJoinWaitlist('Hackathon Page');
   };
 
   const handleClosePopup = () => {
@@ -280,7 +289,7 @@ const Hackathon = () => {
       <FooterSection />
       
       {/* Waitlist Popup */}
-      {showPopup && <WaitlistPopup waitlistCount={waitlistCount} onClose={handleClosePopup} />}
+      {showPopup && <WaitlistPopup waitlistCount={waitlistCount} onClose={handleClosePopup} onSubmit={handlePopupSubmit} />}
     </div>
   );
 };

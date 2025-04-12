@@ -1,86 +1,123 @@
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { X, ExternalLink, Users } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { useWaitlist } from '@/contexts/WaitlistContext';
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useWaitlist } from "@/contexts/WaitlistContext";
+import { trackSubmitForm } from "@/utils/tikTokEvents";
 
 interface WaitlistPopupProps {
   waitlistCount: number;
   onClose: () => void;
+  onSubmit?: () => void; // Optional callback for when form is submitted
 }
 
-const WaitlistPopup = ({ waitlistCount, onClose }: WaitlistPopupProps) => {
+const WaitlistPopup = ({ waitlistCount, onClose, onSubmit }: WaitlistPopupProps) => {
   const { incrementWaitlist } = useWaitlist();
-  const [localCount, setLocalCount] = useState(waitlistCount);
-  
-  // Increase the counter by a random number between 1-6 every few seconds
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      const randomIncrement = Math.floor(Math.random() * 6) + 1; // Random number between 1-6
-      setLocalCount(prev => prev + randomIncrement);
-      incrementWaitlist(randomIncrement); // Update the global count as well
-    }, 3000); // Increase every 3 seconds
+    // Prevent scrolling when popup is shown
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     
-    return () => clearInterval(interval);
-  }, [incrementWaitlist]);
-  
-  const handleJoinWaitlist = () => {
-    window.open("https://forms.gle/woi7ipjUf64fkqoU6", "_blank");
-    onClose();
+    if (!email || !email.includes("@")) {
+      setError("Please enter a valid email address");
+      return;
+    }
+    
+    if (!name) {
+      setError("Please enter your name");
+      return;
+    }
+    
+    // Track the form submission with TikTok
+    trackSubmitForm('waitlist-form', 'Waitlist Registration Form', 10);
+    
+    // Increment waitlist count
+    incrementWaitlist();
+    
+    // Call the optional onSubmit callback if provided
+    if (onSubmit) {
+      onSubmit();
+    }
+    
+    setSubmitted(true);
+    setError("");
+    
+    // Close popup after 3 seconds
+    setTimeout(() => {
+      onClose();
+    }, 3000);
   };
-  
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-purple-600 to-indigo-600"></div>
-        
-        <button 
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+      <div className="bg-gradient-to-br from-purple-900 to-indigo-900 rounded-xl p-6 max-w-md w-full relative">
+        <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 transition-colors"
-          aria-label="Close popup"
+          className="absolute top-3 right-3 text-white/70 hover:text-white"
         >
-          <X className="h-5 w-5" />
+          ✕
         </button>
         
-        <div className="p-6">
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-bold mb-2">Don't Miss Your Spot!</h3>
-            <p className="text-gray-600">
-              Join the waitlist now before all spots are filled.
+        {!submitted ? (
+          <>
+            <h2 className="text-2xl font-bold text-white mb-2">
+              Don't Miss Your Spot!
+            </h2>
+            <p className="text-white/80 mb-4">
+              <span className="font-bold text-white">{waitlistCount}</span> people have already joined the waitlist. Secure your place now!
+            </p>
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <Input
+                  type="text"
+                  placeholder="Your Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                />
+              </div>
+              <div>
+                <Input
+                  type="email"
+                  placeholder="Your Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                />
+              </div>
+              
+              {error && <p className="text-red-300 text-sm">{error}</p>}
+              
+              <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-pink-500 to-orange-500 hover:from-pink-600 hover:to-orange-600"
+              >
+                Join Waitlist
+              </Button>
+            </form>
+          </>
+        ) : (
+          <div className="text-center py-6">
+            <div className="text-5xl mb-4">🎉</div>
+            <h2 className="text-2xl font-bold text-white mb-2">
+              You're In!
+            </h2>
+            <p className="text-white/80">
+              Thanks for joining our waitlist. We'll be in touch soon with more details!
             </p>
           </div>
-          
-          <div className="bg-purple-50 p-4 rounded-lg mb-6">
-            <div className="flex items-center justify-center mb-2">
-              <Users className="h-5 w-5 text-purple-600 mr-2" />
-              <p className="font-medium text-purple-800">Current Waitlist</p>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-purple-800 animate-pulse">
-                {localCount.toLocaleString()} people
-              </div>
-              <p className="text-xs text-purple-600 mt-1">
-                <span className="animate-pulse">●</span> Increasing every minute
-              </p>
-            </div>
-          </div>
-          
-          <Button 
-            className={cn(
-              "w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white",
-              "hover:shadow-lg transition-all duration-300"
-            )}
-            size="lg"
-            onClick={handleJoinWaitlist}
-          >
-            Join Waitlist Now
-            <ExternalLink className="ml-2 h-4 w-4" />
-          </Button>
-          
-          <p className="text-xs text-center text-gray-500 mt-4">
-            Limited number of applicants will be accepted
-          </p>
-        </div>
+        )}
       </div>
     </div>
   );

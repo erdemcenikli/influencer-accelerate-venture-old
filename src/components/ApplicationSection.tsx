@@ -1,10 +1,25 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ExternalLink } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { identifyUser, trackClickButton, trackSubmitForm } from "@/utils/tikTokEvents";
 
 const ApplicationSection = () => {
+  const [email, setEmail] = useState("");
   const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSfWHt-hs-SgoZ_16LiglpnTF6xBSswU2QfaK664_w08EZOwww/viewform?usp=sharing";
   
   const handleApplyClick = () => {
+    // Track button click
+    trackClickButton('apply-now-btn', 'Apply Now Button - Main Page');
+    
+    // If user entered email, identify them first (hashed on client side)
+    if (email && email.includes('@')) {
+      identifyUser(email);
+    }
+    
+    // Track form submission
+    trackSubmitForm('application-form', 'Main Application Form', 100);
+    
+    // Open Google Form in new tab
     window.open(googleFormLink, '_blank');
   };
 
