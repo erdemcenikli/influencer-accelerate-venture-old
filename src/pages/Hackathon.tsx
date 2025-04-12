@@ -4,37 +4,11 @@ import FooterSection from '@/components/FooterSection';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Clock, Users, Trophy, Lightbulb, Calendar, MapPin, CheckCircle2 } from 'lucide-react';
 import WaitlistPopup from '@/components/WaitlistPopup';
+import { useWaitlist } from '@/contexts/WaitlistContext';
 
 const Hackathon = () => {
-  const [waitlistCount, setWaitlistCount] = useState(350);
+  const { waitlistCount } = useWaitlist();
   const [showPopup, setShowPopup] = useState(false);
-
-  // Calculate waitlist count based on date
-  useEffect(() => {
-    const calculateWaitlistCount = () => {
-      // Base count starting from April 1, 2025
-      const baseCount = 350;
-      
-      // Get current date
-      const currentDate = new Date();
-      const startDate = new Date('2025-04-01');
-      
-      // Calculate days since April 1, 2025
-      const timeDiff = currentDate.getTime() - startDate.getTime();
-      const daysSinceStart = Math.floor(timeDiff / (1000 * 3600 * 24));
-      
-      // Calculate additional count based on formula: 30 + day number
-      let additionalCount = 0;
-      for (let i = 1; i <= daysSinceStart; i++) {
-        additionalCount += (30 + i);
-      }
-      
-      // Set the waitlist count
-      setWaitlistCount(baseCount + additionalCount);
-    };
-    
-    calculateWaitlistCount();
-  }, []);
 
   // Show popup after 5 seconds
   useEffect(() => {

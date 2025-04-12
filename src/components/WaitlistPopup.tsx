@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { X, ExternalLink, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useWaitlist } from '@/contexts/WaitlistContext';
 
 interface WaitlistPopupProps {
   waitlistCount: number;
@@ -9,6 +10,7 @@ interface WaitlistPopupProps {
 }
 
 const WaitlistPopup = ({ waitlistCount, onClose }: WaitlistPopupProps) => {
+  const { incrementWaitlist } = useWaitlist();
   const [localCount, setLocalCount] = useState(waitlistCount);
   
   // Increase the counter by a random number between 1-6 every few seconds
@@ -16,10 +18,11 @@ const WaitlistPopup = ({ waitlistCount, onClose }: WaitlistPopupProps) => {
     const interval = setInterval(() => {
       const randomIncrement = Math.floor(Math.random() * 6) + 1; // Random number between 1-6
       setLocalCount(prev => prev + randomIncrement);
+      incrementWaitlist(randomIncrement); // Update the global count as well
     }, 3000); // Increase every 3 seconds
     
     return () => clearInterval(interval);
-  }, []);
+  }, [incrementWaitlist]);
   
   const handleJoinWaitlist = () => {
     window.open("https://forms.gle/woi7ipjUf64fkqoU6", "_blank");
