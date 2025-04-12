@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { trackClickButton } from "@/utils/tikTokEvents";
+import { trackServerFormSubmission } from "@/utils/tikTokServerEvents";
 
 interface WaitlistPopupProps {
   waitlistCount: number;
@@ -20,8 +21,14 @@ const WaitlistPopup = ({ waitlistCount, onClose, onSubmit }: WaitlistPopupProps)
   }, []);
 
   const handleJoinWaitlist = () => {
-    // Track button click
+    // Track button click with client-side pixel
     trackClickButton('popup-waitlist-btn', 'Popup Waitlist Button');
+    
+    // Track form submission with server-side API
+    trackServerFormSubmission(
+      'Hackathon Waitlist Form',
+      window.location.href
+    );
     
     // Call the optional onSubmit callback if provided
     if (onSubmit) {

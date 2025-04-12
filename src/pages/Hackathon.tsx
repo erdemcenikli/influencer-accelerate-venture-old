@@ -6,6 +6,7 @@ import { ExternalLink, Clock, Users, Trophy, Lightbulb, Calendar, MapPin, CheckC
 import WaitlistPopup from '@/components/WaitlistPopup';
 import { useWaitlist } from '@/contexts/WaitlistContext';
 import { trackViewContent, trackClickButton, trackJoinWaitlist } from "@/utils/tikTokEvents";
+import { trackServerFormSubmission, trackServerRegistration } from "@/utils/tikTokServerEvents";
 
 const Hackathon = () => {
   const { waitlistCount } = useWaitlist();
@@ -25,12 +26,22 @@ const Hackathon = () => {
   }, []);
 
   const handleJoinWaitlist = () => {
+    // Track button click with client-side pixel
     trackClickButton('join-waitlist-btn', 'Join Waitlist Button - Hackathon');
-    window.open("https://forms.gle/woi7ipjUf64fkqoU6", "_blank");
+    
+    // Track form submission with server-side API
+    trackServerFormSubmission('Hackathon Waitlist Form', window.location.href);
+    
+    // Open Google Form
+    window.open("https://docs.google.com/forms/d/1LxVIqcpcn2BKgRNvC6wAc5hsOeCNLdqGWaEyftPra1U/edit", "_blank");
   };
 
   const handlePopupSubmit = () => {
+    // Track registration with client-side pixel
     trackJoinWaitlist('Hackathon Page');
+    
+    // Track registration with server-side API
+    trackServerRegistration('Hackathon Registration', window.location.href);
   };
 
   const handleClosePopup = () => {
