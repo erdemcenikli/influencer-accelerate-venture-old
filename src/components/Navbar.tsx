@@ -72,6 +72,9 @@ const Navbar = () => {
               </Link>
             </>
           )}
+          <Link to="/partnership" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            Partnership
+          </Link>
           <Link to="/hackathon" className={cn(
             "text-sm font-medium transition-colors",
             location.pathname === "/hackathon" 
