@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
-import ProgramSection from '@/components/ProgramSection';
+import HowItWorksSection from '@/components/HowItWorksSection';
+import OwnershipDifferenceSection from '@/components/OwnershipDifferenceSection';
+import ProductCategoriesSection from '@/components/ProductCategoriesSection';
 import BenefitsSection from '@/components/BenefitsSection';
-import IdealCandidateSection from '@/components/IdealCandidateSection';
+import AboutUsSection from '@/components/AboutUsSection';
 import ApplicationSection from '@/components/ApplicationSection';
 import FooterSection from '@/components/FooterSection';
 import { trackViewContent } from "@/utils/tikTokEvents";
@@ -31,7 +33,7 @@ const Index = () => {
 
   useEffect(() => {
     // Track page view when component mounts
-    trackViewContent('home-page', 'ViralRise Influencer Accelerator', 50);
+    trackViewContent('home-page', 'Beauty Brand Partnership Platform', 50);
   }, []);
 
   return (
@@ -39,9 +41,11 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <ProgramSection />
+        <HowItWorksSection />
+        <OwnershipDifferenceSection />
+        <ProductCategoriesSection id="products" />
         <BenefitsSection />
-        <IdealCandidateSection />
+        <AboutUsSection />
         <ApplicationSection />
       </main>
       <FooterSection />

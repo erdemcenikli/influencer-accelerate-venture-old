@@ -5,42 +5,49 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
+    /* New color palette based on design prompt */
+    --deep-purple: 261 58% 36%; /* #3D2C8D */
+    --soft-pink: 0 65% 85%; /* #F4BFBF */
+    --bright-coral: 0 100% 70%; /* #FF6B6B */
+    --off-white: 0 9% 97%; /* #F9F7F7 */
+    --dark-gray: 0 0% 20%; /* #333333 */
+
+    --background: var(--off-white);
+    --foreground: var(--dark-gray);
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: var(--dark-gray);
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: var(--dark-gray);
 
-    --primary: 240 5% 10%;
+    --primary: var(--deep-purple);
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: var(--soft-pink);
+    --secondary-foreground: var(--dark-gray);
 
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: var(--bright-coral);
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: var(--deep-purple);
 
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary: var(--deep-purple);
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-accent: var(--soft-pink);
+    --sidebar-accent-foreground: var(--dark-gray);
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
@@ -129,6 +136,39 @@
 
 .image-fade {
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+/* New utility classes for the redesign */
+.beauty-gradient {
+  @apply bg-gradient-to-r from-primary to-secondary;
+}
+
+.beauty-gradient-text {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent;
+}
+
+.beauty-card {
+  @apply rounded-xl bg-white shadow-md border border-secondary/20 p-6 transition-all duration-300 hover:shadow-lg;
+}
+
+.comparison-table {
+  @apply grid grid-cols-2 gap-6 rounded-xl overflow-hidden;
+}
+
+.comparison-table-header {
+  @apply text-lg font-bold py-3 text-center;
+}
+
+.comparison-table-cell {
+  @apply py-3 px-4 flex items-center gap-2;
+}
+
+.abstract-shape {
+  @apply absolute rounded-full opacity-30 blur-3xl;
+}
+
+.product-card {
+  @apply rounded-xl p-6 bg-white shadow-sm border border-secondary/20 transition-all duration-300 hover:shadow-md;
 }
 
 /* Add blur loading effect for images */

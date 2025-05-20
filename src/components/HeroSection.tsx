@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink, Sparkles } from 'lucide-react';
 
 const HeroSection = () => {
   const heroRef = useRef(null);
@@ -32,92 +32,109 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20">
-      {/* Background styling */}
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      {/* Abstract background shapes */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-radial from-secondary/50 to-transparent opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-secondary/90" />
+        <div className="abstract-shape w-[500px] h-[500px] bg-secondary/50 top-[-100px] right-[-100px]"></div>
+        <div className="abstract-shape w-[300px] h-[300px] bg-accent/30 bottom-[10%] left-[5%]"></div>
+        <div className="abstract-shape w-[400px] h-[400px] bg-primary/40 top-[30%] right-[15%]"></div>
       </div>
       
       <div className="section-container relative z-10 grid md:grid-cols-2 gap-12 items-center">
         <div 
           ref={heroRef} 
-          className="flex flex-col space-y-6 transition-all duration-1000 opacity-0 translate-y-6"
+          className="flex flex-col space-y-8 transition-all duration-1000 opacity-0 translate-y-6"
         >
           <div>
-            <div className="chip mb-4">6-month ViralRise Influencer Accelerator in Bali</div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-              Launch Your Influencer Empire in Beautiful Bali with ViralRise
+            <div className="chip mb-4 bg-white/20 text-white">Beauty Brand Partnership in Bali</div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white uppercase">
+              BUILD A BEAUTY BRAND YOU ACTUALLY OWN
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground">
-              Get $80k, premium products, and expert guidance to scale your personal brand in paradise—all for a 10% stake in your success.
+            <p className="mt-6 text-lg md:text-xl text-white/90">
+              Join our collective of creators in beautiful Bali to transform beauty through shared ownership
             </p>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <Button 
               size="lg" 
-              className="button-hover-effect text-base"
+              className="button-hover-effect text-base bg-accent hover:bg-accent/90 text-white"
               onClick={handleApplyClick}
             >
-              Apply Now
+              Apply to Partner
               <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
             <Button 
               variant="outline" 
               size="lg" 
-              className="text-base"
-              onClick={() => document.getElementById('program')?.scrollIntoView({behavior: 'smooth'})}
+              className="text-base border-white/30 text-white hover:bg-white/10"
+              onClick={() => document.getElementById('how-it-works')?.scrollIntoView({behavior: 'smooth'})}
             >
               Learn More
             </Button>
           </div>
-          
-          <div className="pt-4 flex items-center space-x-4 text-sm text-muted-foreground">
-            <div className="flex flex-col items-center px-4 py-2 rounded-lg bg-white/50 backdrop-blur-sm border border-border">
-              <span className="font-semibold text-foreground">$80k</span>
-              <span>Investment</span>
-            </div>
-            <div className="flex flex-col items-center px-4 py-2 rounded-lg bg-white/50 backdrop-blur-sm border border-border">
-              <span className="font-semibold text-foreground">6 months</span>
-              <span>Program</span>
-            </div>
-            <div className="flex flex-col items-center px-4 py-2 rounded-lg bg-white/50 backdrop-blur-sm border border-border">
-              <span className="font-semibold text-foreground">10%</span>
-              <span>Equity</span>
-            </div>
-            <div className="flex flex-col items-center px-4 py-2 rounded-lg bg-white/50 backdrop-blur-sm border border-border">
-              <span className="font-semibold text-foreground">Bali</span>
-              <span>Location</span>
-            </div>
-          </div>
         </div>
         
         <div className="relative h-[500px] md:h-[600px] animate-fade-in">
-          <div className="absolute inset-0 rounded-2xl overflow-hidden">
-            <img 
-              src="/lovable-uploads/e90dba93-3d65-446f-8a2c-f024c43fe3e7.png" 
-              alt="Group of glamorous influencers in front of city skyline at night" 
-              className="w-full h-full object-cover rounded-2xl transition-all duration-700 ease-in-out hover:scale-105"
-              loading="lazy"
-              onLoad={(e) => {
-                e.currentTarget.classList.remove('image-blur-loading');
-                e.currentTarget.classList.add('image-blur-loaded');
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+          {/* Product silhouettes collage */}
+          <div className="absolute inset-0 rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg">
+            <div className="absolute inset-0 grid grid-cols-2 gap-2 p-4">
+              <div className="relative rounded-lg overflow-hidden h-[280px]">
+                <img 
+                  src="/lovable-uploads/e90dba93-3d65-446f-8a2c-f024c43fe3e7.png" 
+                  alt="Beauty product - Glazing Milk" 
+                  className="w-full h-full object-cover transition-all duration-700 ease-in-out hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
+                  <h4 className="text-white font-medium text-sm">Glazing Milk</h4>
+                </div>
+              </div>
+              <div className="relative rounded-lg overflow-hidden h-[280px]">
+                <img 
+                  src="/lovable-uploads/e90dba93-3d65-446f-8a2c-f024c43fe3e7.png" 
+                  alt="Beauty product - Peptide Lip Tint" 
+                  className="w-full h-full object-cover transition-all duration-700 ease-in-out hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
+                  <h4 className="text-white font-medium text-sm">Peptide Lip Tint</h4>
+                </div>
+              </div>
+              <div className="relative rounded-lg overflow-hidden h-[280px]">
+                <img 
+                  src="/lovable-uploads/e90dba93-3d65-446f-8a2c-f024c43fe3e7.png" 
+                  alt="Beauty product - Barrier Restore Cream" 
+                  className="w-full h-full object-cover transition-all duration-700 ease-in-out hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
+                  <h4 className="text-white font-medium text-sm">Barrier Restore Cream</h4>
+                </div>
+              </div>
+              <div className="relative rounded-lg overflow-hidden h-[280px]">
+                <img 
+                  src="/lovable-uploads/e90dba93-3d65-446f-8a2c-f024c43fe3e7.png" 
+                  alt="Beauty product - Pocket Blush" 
+                  className="w-full h-full object-cover transition-all duration-700 ease-in-out hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
+                  <h4 className="text-white font-medium text-sm">Pocket Blush</h4>
+                </div>
+              </div>
+            </div>
           </div>
           
-          <div className="absolute bottom-6 left-6 right-6 p-6 glass-card rounded-xl animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <div className="absolute bottom-6 left-6 right-6 p-6 glass-card rounded-xl animate-fade-up bg-white/20 backdrop-blur-md border border-white/30" style={{ animationDelay: "0.3s" }}>
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-white rounded-full">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M16 12L10 8V16L16 12Z" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+              <div className="p-3 bg-white rounded-full text-primary">
+                <Sparkles className="h-5 w-5" />
               </div>
               <div>
-                <h4 className="font-medium mb-1">Create content in paradise</h4>
-                <p className="text-sm text-muted-foreground">Transform your influence in beautiful Bali, the perfect backdrop for your content</p>
+                <h4 className="font-medium mb-1 text-white">True Ownership, Not Just Promotion</h4>
+                <p className="text-sm text-white/80">Build equity in a brand you helped create with full creative control</p>
               </div>
             </div>
           </div>

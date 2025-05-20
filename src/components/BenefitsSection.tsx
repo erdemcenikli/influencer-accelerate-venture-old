@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ExternalLink, DollarSign, Users, Lightbulb, Target, Trophy } from 'lucide-react';
+import { Palette, Truck, Users, TrendingUp, Sparkles } from 'lucide-react';
 
 interface BenefitCardProps {
   title: string;
@@ -76,79 +76,50 @@ const BenefitsSection = () => {
     };
   }, []);
 
-  const handleApplyClick = () => {
-    window.open(googleFormLink, '_blank');
-  };
-
   return (
-    <section id="benefits" className="py-20 bg-secondary/30">
+    <section id="benefits" className="py-20 bg-primary/5">
       <div className="section-container">
         <div 
           ref={sectionRef}
           className="text-center mb-16 opacity-0 translate-y-10 transition-all duration-700"
         >
-          <div className="chip mb-4">Benefits</div>
+          <div className="chip mb-4">Partner Benefits</div>
           <h2 className="text-3xl md:text-4xl font-bold">
-            Why Join ViralRise Influencer Accelerator?
+            Why Partner With Us
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            We provide everything you need to transform your influence into a sustainable, scalable business.
+            We provide everything you need to build a successful beauty brand you actually own
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <BenefitCard
-            title="Capital Investment"
-            description="Receive $80,000 in funding to accelerate your growth without the stress of bootstrapping your business."
-            icon={<DollarSign className="h-6 w-6" />}
+            title="Creative Freedom"
+            description="Bring your unique vision to life with full creative control over product development, branding, and marketing."
+            icon={<Palette className="h-6 w-6" />}
             delay={0}
           />
           
           <BenefitCard
-            title="Product Supply"
-            description="We provide all the products you need for your content creation, eliminating upfront costs and logistical challenges."
-            icon={<Target className="h-6 w-6" />}
+            title="Operational Support"
+            description="We handle manufacturing, logistics, and operations so you can focus on creating and connecting with your audience."
+            icon={<Truck className="h-6 w-6" />}
             delay={100}
           />
           
           <BenefitCard
-            title="Expert Mentorship"
-            description="Learn from seasoned entrepreneurs and industry leaders who have successfully scaled creator businesses."
-            icon={<Lightbulb className="h-6 w-6" />}
+            title="Collective Expertise"
+            description="Join forces with other influential creators and leverage our team's industry experience and connections."
+            icon={<Users className="h-6 w-6" />}
             delay={200}
           />
           
           <BenefitCard
-            title="Network Access"
-            description="Tap into our extensive network of investors, brands, and fellow creators for collaboration opportunities and future funding."
-            icon={<Users className="h-6 w-6" />}
+            title="Long-term Value"
+            description="Build equity in a growing beauty brand with sustainable revenue streams beyond one-time promotional deals."
+            icon={<TrendingUp className="h-6 w-6" />}
             delay={300}
           />
-          
-          <BenefitCard
-            title="Business Development"
-            description="Transform your personal brand into a structured business with multiple revenue streams and scalable operations."
-            icon={<Trophy className="h-6 w-6" />}
-            delay={400}
-          />
-          
-          <BenefitCard
-            title="Long-term Partnership"
-            description="Our 10% equity stake means we're invested in your long-term success, providing ongoing support well beyond the program."
-            icon={<ArrowRight className="h-6 w-6" />}
-            delay={500}
-          />
-        </div>
-        
-        <div className="mt-12 text-center">
-          <Button 
-            size="lg" 
-            className="button-hover-effect"
-            onClick={handleApplyClick}
-          >
-            Apply Now
-            <ExternalLink className="ml-2 h-4 w-4" />
-          </Button>
         </div>
       </div>
     </section>

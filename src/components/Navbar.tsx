@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronRight, ExternalLink, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSfWHt-hs-SgoZ_16LiglpnTF6xBSswU2QfaK664_w08EZOwww/viewform?usp=sharing";
@@ -24,6 +25,11 @@ const Navbar = () => {
 
   const handleApplyClick = () => {
     window.open(googleFormLink, '_blank');
+    setMobileMenuOpen(false);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -31,89 +37,129 @@ const Navbar = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
         scrolled 
-          ? "bg-white/80 backdrop-blur-md shadow-subtle py-3" 
-          : "bg-transparent py-5"
+          ? "bg-white/90 backdrop-blur-md shadow-subtle py-3" 
+          : mobileMenuOpen
+            ? "bg-white/90 backdrop-blur-md shadow-subtle py-3"
+            : "bg-transparent py-5"
       )}
     >
       <div className="container flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
-          <span className="font-bold text-lg tracking-tight">ViralRise</span>
+        <Link to="/" className="flex items-center space-x-2 z-50">
+          <span className="font-bold text-lg tracking-tight beauty-gradient-text">ViralRise</span>
         </Link>
         
+        {/* Mobile menu button */}
+        <button 
+          className="md:hidden z-50 p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? (
+            <X className="h-6 w-6 text-primary" />
+          ) : (
+            <Menu className="h-6 w-6 text-foreground" />
+          )}
+        </button>
+        
+        {/* Mobile menu */}
+        <div className={cn(
+          "fixed inset-0 bg-white z-40 flex flex-col items-center justify-center transition-all duration-300 md:hidden",
+          mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+        )}>
+          <nav className="flex flex-col items-center space-y-6 text-center">
+            {isHomePage ? (
+              <>
+                <a href="#how-it-works" onClick={closeMobileMenu} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                  How It Works
+                </a>
+                <a href="#benefits" onClick={closeMobileMenu} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                  Benefits
+                </a>
+                <a href="#products" onClick={closeMobileMenu} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                  Products
+                </a>
+                <a href="#about" onClick={closeMobileMenu} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                  About Us
+                </a>
+                <a href="#apply" onClick={closeMobileMenu} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                  Apply
+                </a>
+              </>
+            ) : (
+              <>
+                <Link to="/#how-it-works" onClick={closeMobileMenu} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                  How It Works
+                </Link>
+                <Link to="/#benefits" onClick={closeMobileMenu} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                  Benefits
+                </Link>
+                <Link to="/#products" onClick={closeMobileMenu} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                  Products
+                </Link>
+                <Link to="/#about" onClick={closeMobileMenu} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                  About Us
+                </Link>
+                <Link to="/#apply" onClick={closeMobileMenu} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                  Apply
+                </Link>
+              </>
+            )}
+            <Button 
+              variant="default" 
+              size="lg" 
+              className="button-hover-effect bg-accent hover:bg-accent/90 text-white mt-6"
+              onClick={handleApplyClick}
+            >
+              Apply to Partner
+              <ExternalLink className="ml-2 h-4 w-4" />
+            </Button>
+          </nav>
+        </div>
+        
+        {/* Desktop menu */}
         <nav className="hidden md:flex items-center space-x-8">
           {isHomePage ? (
             <>
-              <a href="#program" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-                Program
+              <a href="#how-it-works" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                How It Works
               </a>
-              <a href="#benefits" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              <a href="#benefits" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
                 Benefits
               </a>
-              <a href="#who" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-                Who We Want
+              <a href="#products" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                Products
               </a>
-              <a href="#apply" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-                Apply
+              <a href="#about" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                About Us
               </a>
             </>
           ) : (
             <>
-              <Link to="/#program" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-                Program
+              <Link to="/#how-it-works" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                How It Works
               </Link>
-              <Link to="/#benefits" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              <Link to="/#benefits" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
                 Benefits
               </Link>
-              <Link to="/#who" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-                Who We Want
+              <Link to="/#products" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                Products
               </Link>
-              <Link to="/#apply" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-                Apply
+              <Link to="/#about" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                About Us
               </Link>
             </>
           )}
-          <Link to="/partnership" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-            Partnership
-          </Link>
-          <Link to="/hackathon" className={cn(
-            "text-sm font-medium transition-colors",
-            location.pathname === "/hackathon" 
-              ? "text-purple-700 font-semibold" 
-              : "text-purple-600 hover:text-purple-700"
-          )}>
-            Hackathon
-          </Link>
         </nav>
         
-        <div className="flex items-center space-x-4">
-          {location.pathname !== "/hackathon" && (
-            <Link 
-              to="/hackathon" 
-              className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-md shadow-sm hover:shadow-md transition-all duration-300"
-            >
-              Hackathon Competition
-              <ChevronRight className="ml-1 h-4 w-4" />
-            </Link>
-          )}
-          
+        <div className="hidden md:flex items-center space-x-4">
           <Button 
             variant="default" 
             size="sm" 
-            className="button-hover-effect hidden md:flex"
+            className="button-hover-effect bg-accent hover:bg-accent/90 text-white"
             onClick={handleApplyClick}
           >
-            Apply Now
+            Apply to Partner
             <ExternalLink className="ml-1 h-4 w-4" />
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            size="sm" 
-            className="md:hidden" 
-            onClick={handleApplyClick}
-          >
-            Apply
-            <ExternalLink className="ml-1 h-3 w-3" />
           </Button>
         </div>
       </div>
